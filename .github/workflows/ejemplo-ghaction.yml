@@ -1,0 +1,25 @@
+name: Ejemplo Completo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ejemplo_job:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - name: Acción de ejemplo
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+
+      - name: Imprimir mensaje
+        run: echo "¡Hola, mundo desde GitHub Actions!"
+
+      - name: Mostrar secreto
+        run: echo "El secreto es ${{ secrets.MI_SECRETO }}"
+        env:
+          MI_SECRETO: ${{ secrets.MI_SECRETO }}
